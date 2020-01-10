@@ -75,14 +75,6 @@ public abstract class BoolectorNode extends BoolectorObject {
         Native.assume(btor.getRef(), ref);
     }
 
-    public BitvecNode toBitvecNode(int castSize) {
-        BitvecNode node = (BitvecNode) this;
-        int curSize = getWidth();
-        if (curSize == castSize) return node;
-        else if (curSize < castSize) return node.sext(castSize);
-        else return node.slice(castSize, 0);
-    }
-
     public boolean isArrayNode() {
         return kind == TypeNode.ARRAYNODE;
     }
@@ -94,6 +86,12 @@ public abstract class BoolectorNode extends BoolectorObject {
     public boolean isBitvecNode() {
         return kind == TypeNode.BITVECNODE;
     }
+
+    public abstract BoolNode toBoolNode();
+    public abstract BitvecNode toBitvecNode();
+    public abstract BitvecNode toBitvecNode(int width);
+    public abstract ArrayNode toArrayNode();
+
 }
 
 

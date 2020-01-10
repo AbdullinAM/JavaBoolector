@@ -37,4 +37,24 @@ public class BoolNode extends BoolectorNode {
         return Native.bitvecAssignment(btor.getRef(), ref) == 1;
     }
 
+    @Override
+    public BoolNode toBoolNode() {
+        return this;
+    }
+
+    @Override
+    public BitvecNode toBitvecNode() {
+        return (BitvecNode) BitvecNode.create(this.btor, this.ref, this.name);
+    }
+
+    @Override
+    public BitvecNode toBitvecNode(int width) {
+        return toBitvecNode().toBitvecNode(width);
+    }
+
+    @Override
+    public ArrayNode toArrayNode() {
+        throw new ClassCastException();
+    }
+
 }

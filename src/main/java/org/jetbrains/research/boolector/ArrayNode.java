@@ -34,4 +34,24 @@ public class ArrayNode extends BoolectorNode {
         if (index.getWidth() != widthIndex) index.toBitvecNode(widthIndex);
         return new ArrayNode(btor, Native.write(btor.getRef(), ref, index.getRef(), value.getRef()), null);
     }
+
+    @Override
+    public BoolNode toBoolNode() {
+        throw new ClassCastException();
+    }
+
+    @Override
+    public BitvecNode toBitvecNode() {
+        throw new ClassCastException();
+    }
+
+    @Override
+    public BitvecNode toBitvecNode(int width) {
+        throw new ClassCastException();
+    }
+
+    @Override
+    public ArrayNode toArrayNode() {
+        return this;
+    }
 }
