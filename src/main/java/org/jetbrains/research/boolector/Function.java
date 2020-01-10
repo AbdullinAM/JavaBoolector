@@ -19,13 +19,13 @@ public class Function extends BoolectorFun {
         return params;
     }
 
-    static Function func(BoolectorNode nodeBody, List<FuncParam> funcParams) {
+    public static Function func(BoolectorNode nodeBody, List<FuncParam> funcParams) {
         Btor btor = nodeBody.getBtor();
         long[] params = toLong(funcParams.toArray(new FuncParam[0]));
         return new Function(btor, Native.fun(btor.getRef(), params, params.length, nodeBody.getRef()), params);
     }
 
-    static Function forAll(BoolectorNode nodeBody, List<FuncParam> funcParams) {
+    public static Function forAll(BoolectorNode nodeBody, List<FuncParam> funcParams) {
         Btor btor = nodeBody.getBtor();
         long[] params = toLong(funcParams.toArray(new FuncParam[0]));
         return new Function(btor, Native.forAll(btor.getRef(), params, params.length, nodeBody.getRef()), params);

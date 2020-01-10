@@ -5,7 +5,7 @@ public class BoolNode extends BoolectorNode {
         super(btor, ref, null, TypeNode.BOOLNODE);
     }
 
-    static BoolNode constBool(Btor btor, boolean bool) {
+    public static BoolNode constBool(Btor btor, boolean bool) {
         return new BoolNode(btor, bool ? Native.constNodeTrue(btor.getRef()) : Native.constNodeFalse(btor.getRef()));
     }
 
