@@ -21,3 +21,13 @@ Build java bindings library:
 mvn clean package
 ```
 
+Build jar with sources:
+```
+mvn sources:jar
+```
+
+Build tar.gz with sources:
+```
+mvn clean assembly:assembly
+```
+
