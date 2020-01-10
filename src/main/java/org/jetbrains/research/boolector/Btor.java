@@ -7,7 +7,7 @@ public class Btor {
 
     private long ref;
 
-    enum Status {
+    public enum Status {
         SAT(10),
         UNSAT(20),
         UNKNOWN(0);
@@ -37,7 +37,7 @@ public class Btor {
         try {
             NativeUtils.loadLibrary("boolector");
             NativeUtils.loadLibrary("boolector-java");
-            NativeUtils.loadLibrary("btor2parser");
+            NativeUtils.loadLibrary("btor2parser--");
         } catch (IOException e) {
             e.printStackTrace();
             throw new IllegalStateException("Unable to load dynamic libraries");
