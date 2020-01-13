@@ -7,7 +7,7 @@ Dependencies
 [Boolector](https://github.com/boolector/boolector) version 3.1.0 should be 
 installed in the system
 
-For running on Arch Linux you need to install [boolector-java](https://aur.archlinux.org/packages/boolector-java/)
+For running on Arch Linux you need to install [boolector](https://aur.archlinux.org/packages/boolector/)
 package from AUR.
 
 Build
@@ -34,3 +34,7 @@ Build tar.gz with sources:
 mvn clean assembly:assembly
 ```
 
+Install
+-------------------------------------------------------------------------------
+
+You can install [boolector-java](https://aur.archlinux.org/packages/boolector-java/) package from AUR.
