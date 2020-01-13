@@ -33,4 +33,8 @@ public abstract class BoolectorSort extends BoolectorObject {
     public void release() {
         Native.releaseSort(btor.getRef(), ref);
     }
+
+    public abstract BitvecSort toBitvecSort();
+    public abstract BoolSort toBoolSort();
+    public abstract ArraySort toArraySort();
 }

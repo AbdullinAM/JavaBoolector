@@ -2,7 +2,11 @@ package org.jetbrains.research.boolector;
 
 public class BoolNode extends BoolectorNode {
     BoolNode(Btor btor, long ref) {
-        super(btor, ref, null, TypeNode.BOOLNODE);
+        this(btor, ref, null);
+    }
+
+    BoolNode(Btor btor, long ref, String name) {
+        super(btor, ref, name, TypeNode.BOOLNODE);
     }
 
     public static BoolNode constBool(Btor btor, boolean bool) {

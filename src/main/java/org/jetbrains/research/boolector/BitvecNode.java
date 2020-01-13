@@ -159,7 +159,7 @@ public class BitvecNode extends BoolectorNode {
     @Override
     public BoolNode toBoolNode() {
         if (getWidth() == 1) {
-            return (BoolNode) BoolNode.create(this.btor, this.ref, this.name);
+            return new BoolNode(this.btor, this.ref, this.name);
         }
         throw new ClassCastException();
     }

@@ -10,4 +10,19 @@ public class BoolSort extends BoolectorSort {
     public static BoolSort boolSort(Btor btor) {
         return new BoolSort(btor, Native.bitvecSort(btor.getRef(), BOOL_WIDTH));
     }
+
+    @Override
+    public BitvecSort toBitvecSort() {
+        return new BitvecSort(this.btor, this.ref, BOOL_WIDTH);
+    }
+
+    @Override
+    public BoolSort toBoolSort() {
+        return this;
+    }
+
+    @Override
+    public ArraySort toArraySort() {
+        throw new ClassCastException();
+    }
 }
