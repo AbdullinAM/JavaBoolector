@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="configure" default="copy libraries to resources">
+
+    <property name="project.basedir" value="."/>
+    <property name="boolector.lib" value="/usr/lib/libboolector.so"/>
+    <property name="btor2parser.lib" value="/usr/lib/libbtor2parser.so"/>
+
+    <target name="Check boolector">
+        <condition property="boolector.found">
+            <and>
+                <available file="${boolector.lib}"/>
+                <available file="${btor2parser.lib}"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="Build boolector-java" depends="Check boolector" if="${boolector.found}">
+        <exec executable="make" dir="${project.basedir}"/>
+    </target>
+
+    <target name="copy libraries to resources" depends="Build boolector-java">
+        <property name="resources.dir" value="${project.basedir}/src/main/resources"/>
+        <exec executable="mkdir" dir="${project.basedir}">
+            <arg value="-p"/>
+            <arg value="${resources.dir}"/>
+        </exec>
+
+        <exec executable="cp" dir="${project.basedir}">
+            <arg value="${boolector.lib}"/>
+            <arg value="${resources.dir}/"/>
+        </exec>
+
+        <exec executable="cp" dir="${project.basedir}">
+            <arg value="${btor2parser.lib}"/>
+            <arg value="${resources.dir}/"/>
+        </exec>
+
+        <exec executable="cp" dir="${project.basedir}">
+            <arg value="lib/libboolector-java.so"/>
+            <arg value="${resources.dir}/"/>
+        </exec>
+    </target>
+</project>
