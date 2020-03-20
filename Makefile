@@ -4,7 +4,7 @@ PREFIX=/usr
 
 CC=gcc
 CFLAGS=-c -Wall -fPIC -I/usr/lib/jvm/default/include -I/usr/lib/jvm/default/include/linux -I/usr/include/boolector  -I/usr/include/boolector-java
-LDFLAGS=-fPIC -shared -lboolector -lbtor2parser
+LDFLAGS=-fPIC -shared -lboolector
 
 SOURCES_DIR=${BASE_DIR}/src/main/c
 OBJECTS_DIR=${BASE_DIR}/target/c
