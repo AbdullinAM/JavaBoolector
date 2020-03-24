@@ -10,16 +10,16 @@ public abstract class BoolectorFun extends BoolectorObject {
         Native.releaseNode(btor.getRef(), ref);
     }
 
-    public static class FuncParam extends BoolectorFun {
-        FuncParam(Btor btor, long ref) {
+    public static class FunctionParam extends BoolectorFun {
+        FunctionParam(Btor btor, long ref) {
             super(btor, ref);
         }
 
-        public static FuncParam param(BoolectorSort sort, String name) {
+        public static FunctionParam param(BoolectorSort sort, String name) {
             Btor btor = sort.getBtor();
             return name == null ?
-                    new FuncParam(btor, Native.param(btor.getRef(), sort.getRef(), "nullInC")) :
-                    new FuncParam(btor, Native.param(btor.getRef(), sort.getRef(), name));
+                    new FunctionParam(btor, Native.param(btor.getRef(), sort.getRef(), "nullInC")) :
+                    new FunctionParam(btor, Native.param(btor.getRef(), sort.getRef(), name));
         }
     }
 }

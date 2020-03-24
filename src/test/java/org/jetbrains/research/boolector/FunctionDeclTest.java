@@ -7,7 +7,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class FunctionTest {
+public class FunctionDeclTest {
 
     @Test
     public void testAll() {
@@ -20,10 +20,10 @@ public class FunctionTest {
         a.add(b);
 
         BitvecNode temp = x.add(y);
-        BoolectorFun.FuncParam firstParam = BoolectorFun.FuncParam.param(sort, "nullINc");
-        BoolectorFun.FuncParam secondParam = BoolectorFun.FuncParam.param(sort, "nullINc");
-        List<BoolectorFun.FuncParam> param = Arrays.asList(firstParam, secondParam);
-        Function slt = Function.func(temp, param);
+        BoolectorFun.FunctionParam firstParam = BoolectorFun.FunctionParam.param(sort, "nullINc");
+        BoolectorFun.FunctionParam secondParam = BoolectorFun.FunctionParam.param(sort, "nullINc");
+        List<BoolectorFun.FunctionParam> param = Arrays.asList(firstParam, secondParam);
+        FunctionDecl slt = FunctionDecl.func(temp, param);
         List<BoolectorNode> paramX = Arrays.asList(x, y);
         BitvecNode first = (BitvecNode) slt.apply(paramX);
         BitvecNode second = (BitvecNode) slt.apply(paramX);
