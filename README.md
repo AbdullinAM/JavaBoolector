@@ -4,7 +4,7 @@ Java bindings for [Boolector](https://github.com/boolector/boolector) SMT solver
 
 Dependencies
 -------------------------------------------------------------------------------
-[Boolector](https://github.com/boolector/boolector) version 3.1.0 should be 
+[Boolector](https://github.com/boolector/boolector) version 3.2.0 should be 
 installed in the system
 
 For running on Arch Linux you need to install [boolector](https://aur.archlinux.org/packages/boolector/)
