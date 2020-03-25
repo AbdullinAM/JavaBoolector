@@ -82,11 +82,13 @@ Java_org_jetbrains_research_boolector_Native_var(JNIEnv *env, jobject jobj, jlon
     BoolectorNode *node;
     BoolectorSort sort = (BoolectorSort) jsort_ref;
 
-    const char *str = (*env)->GetStringUTFChars(env, jsymbol, 0);
-    node = strncmp(str, "nullINc", 7) == 0 ?
-                boolector_var(btor, sort, NULL) :
-                boolector_var(btor, sort, str);
-    (*env)->ReleaseStringUTFChars(env, jsymbol, str);
+    if (jsymbol == NULL) {
+        node = boolector_var(btor, sort, NULL);
+    } else {
+        const char *str = (*env)->GetStringUTFChars(env, jsymbol, 0);
+        node = boolector_var(btor, sort, str);
+        (*env)->ReleaseStringUTFChars(env, jsymbol, str);
+    }
     return (jlong) node;
 }
 
@@ -252,12 +254,14 @@ JNIEXPORT jlong JNICALL
 Java_org_jetbrains_research_boolector_Native_array(JNIEnv *env, jobject jobj, jlong btorRef, jlong jsort_ref, jstring jsymbol) {
     Btor* btor = (Btor*) btorRef;
     BoolectorSort sort = (BoolectorSort) jsort_ref;
-    const char *str = (*env)->GetStringUTFChars(env, jsymbol, 0);
     jlong ans;
-    if (strncmp(str, "nullINc", 7) == 0) {
+    if (jsymbol == NULL) {
         ans = (jlong) boolector_array(btor, sort, NULL);
-    } else { ans = (jlong) boolector_array(btor, sort, str); }
-    (*env)->ReleaseStringUTFChars(env, jsymbol, str);
+    } else {
+        const char *str = (*env)->GetStringUTFChars(env, jsymbol, 0);
+        ans = (jlong) boolector_array(btor, sort, str);
+        (*env)->ReleaseStringUTFChars(env, jsymbol, str);
+    }
     return ans;
 }
 
@@ -361,13 +365,13 @@ Java_org_jetbrains_research_boolector_Native_param(JNIEnv *env, jobject jobj, jl
     Btor* btor = (Btor*) btorRef;
     BoolectorNode *node;
     BoolectorSort sort = (BoolectorSort) jsort_ref;
-    const char *str = (*env)->GetStringUTFChars(env, jsymbol, 0);
-    if (strncmp(str, "nullINc", 7) == 0) {
+    if (jsymbol == NULL) {
         node = boolector_param(btor, sort, NULL);
     } else {
+        const char *str = (*env)->GetStringUTFChars(env, jsymbol, 0);
         node = boolector_param(btor, sort, str);
+        (*env)->ReleaseStringUTFChars(env, jsymbol, str);
     }
-    (*env)->ReleaseStringUTFChars(env, jsymbol, str);
     return (jlong) node;
 }
 

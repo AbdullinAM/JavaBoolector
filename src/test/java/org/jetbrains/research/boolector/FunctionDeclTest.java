@@ -13,16 +13,16 @@ public class FunctionDeclTest {
     public void testAll() {
         Btor btor = new Btor();
         BitvecSort sort = BitvecSort.bitvecSort(btor, 8);
-        BitvecNode x = BitvecNode.var(sort, "nullINc", true);
-        BitvecNode y = BitvecNode.var(sort, "nullINc", true);
+        BitvecNode x = BitvecNode.var(sort, "x", true);
+        BitvecNode y = BitvecNode.var(sort, "y", true);
         BitvecNode a = BitvecNode.constInt(10, sort);
         BitvecNode b = BitvecNode.constInt(20, sort);
         a.add(b);
 
         BitvecNode temp = x.add(y);
-        BoolectorFun.FunctionParam firstParam = BoolectorFun.FunctionParam.param(sort, "nullINc");
-        BoolectorFun.FunctionParam secondParam = BoolectorFun.FunctionParam.param(sort, "nullINc");
-        List<BoolectorFun.FunctionParam> param = Arrays.asList(firstParam, secondParam);
+        FunctionDecl.FunctionParam firstParam = FunctionDecl.FunctionParam.param(sort, null);
+        FunctionDecl.FunctionParam secondParam = FunctionDecl.FunctionParam.param(sort, null);
+        List<FunctionDecl.FunctionParam> param = Arrays.asList(firstParam, secondParam);
         FunctionDecl slt = FunctionDecl.func(temp, param);
         List<BoolectorNode> paramX = Arrays.asList(x, y);
         BitvecNode first = (BitvecNode) slt.apply(paramX);
