@@ -425,11 +425,27 @@ JNIEXPORT jlong JNICALL Java_org_jetbrains_research_boolector_Native_param
 
 /*
  * Class:     org_jetbrains_research_boolector_Native
+ * Method:    funcSort
+ * Signature: (J[JIJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_jetbrains_research_boolector_Native_funcSort
+  (JNIEnv *, jclass, jlong, jlongArray, jint, jlong);
+
+/*
+ * Class:     org_jetbrains_research_boolector_Native
  * Method:    fun
  * Signature: (J[JIJ)J
  */
 JNIEXPORT jlong JNICALL Java_org_jetbrains_research_boolector_Native_fun
   (JNIEnv *, jclass, jlong, jlongArray, jint, jlong);
+
+/*
+ * Class:     org_jetbrains_research_boolector_Native
+ * Method:    uf
+ * Signature: (JJLjava/lang/String;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_jetbrains_research_boolector_Native_uf
+  (JNIEnv *, jclass, jlong, jlong, jstring);
 
 /*
  * Class:     org_jetbrains_research_boolector_Native

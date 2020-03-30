@@ -363,6 +363,13 @@ Java_org_jetbrains_research_boolector_Native_isArraySort(JNIEnv *env, jobject jo
     return (jboolean) boolector_is_array_sort(btor, s);
 }
 
+JNIEXPORT jboolean JNICALL
+Java_org_jetbrains_research_boolector_Native_isFuncSort(JNIEnv *env, jobject jobj, jlong btorRef, jlong jsort_ref) {
+    Btor* btor = (Btor*) btorRef;
+    BoolectorSort s = (BoolectorSort) jsort_ref;
+    return (jboolean) boolector_is_fun_bitvec_sort(btor, s);
+}
+
 JNIEXPORT void JNICALL
 Java_org_jetbrains_research_boolector_Native_releaseSort(JNIEnv *env, jobject jobj, jlong btorRef, jlong jsort_ref) {
     Btor* btor = (Btor*) btorRef;
@@ -393,6 +400,28 @@ BoolectorNode **ref_array_to_type(long *refs, uint32_t size) {
     return array;
 }
 
+BoolectorSort* ref_array_to_sorts(long *refs, uint32_t size) {
+    BoolectorSort *array = malloc(size);
+    for (int i = 0; i < size; i++) {
+        array[i] = (BoolectorSort) refs[i];
+    }
+    return array;
+}
+
+JNIEXPORT jlong JNICALL
+Java_org_jetbrains_research_boolector_Native_funcSort(JNIEnv *env, jobject jobj, jlong btorRef, jlongArray jparams, jint jlength,
+                                                 jlong retSortRef) {
+    Btor* btor = (Btor*) btorRef;
+    uint32_t size = (uint32_t) jlength;
+    BoolectorSort retSort = (BoolectorSort) retSortRef;
+    long *ref_params = (*env)->GetLongArrayElements(env, jparams, 0);
+    BoolectorSort *params = ref_array_to_sorts(ref_params, size);
+    jlong ans = (jlong) boolector_fun_sort(btor, params, (uint32_t) size, retSort);
+    (*env)->ReleaseLongArrayElements(env, jparams, ref_params, 0);
+    free(params);
+    return ans;
+}
+
 JNIEXPORT jlong JNICALL
 Java_org_jetbrains_research_boolector_Native_fun(JNIEnv *env, jobject jobj, jlong btorRef, jlongArray jparams, jint jlength,
                                                  jlong body_node_ref) {
@@ -405,6 +434,21 @@ Java_org_jetbrains_research_boolector_Native_fun(JNIEnv *env, jobject jobj, jlon
     (*env)->ReleaseLongArrayElements(env, jparams, ref_params, 0);
     free(params);
     return ans;
+}
+
+JNIEXPORT jlong JNICALL
+Java_org_jetbrains_research_boolector_Native_uf(JNIEnv *env, jobject jobj, jlong btorRef, jlong sortRef, jstring name) {
+    Btor* btor = (Btor*) btorRef;
+    BoolectorSort sort = (BoolectorSort) sortRef;
+    BoolectorNode *node;
+    if (name == NULL) {
+        node = boolector_uf(btor, sort, NULL);
+    } else {
+        const char *str = (*env)->GetStringUTFChars(env, name, 0);
+        node = boolector_uf(btor, sort, str);
+        (*env)->ReleaseStringUTFChars(env, name, str);
+    }
+    return (jlong) node;
 }
 
 JNIEXPORT jlong JNICALL

@@ -18,6 +18,8 @@ public final class Native {
 
     static native boolean isArraySort(long btor, long ref);
 
+    static native boolean isFuncSort(long btor, long ref);
+
     static native int getWidth(long btor, long ref);
 
     static native long not(long btor, long ref);
@@ -106,7 +108,11 @@ public final class Native {
 
     static native long param(long btor, long ref, String name);
 
+    static native long funcSort(long btor, long[] paramSorts, int arity, long retSortRef);
+
     static native long fun(long btor, long[] params, int length, long nodeBody);
+
+    static native long uf(long btor, long funcSort, String name);
 
     static native long apply(long btor, long[] argNodes, int length, long ref);
 
