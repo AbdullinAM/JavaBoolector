@@ -69,7 +69,7 @@ JNIEXPORT jstring JNICALL Java_org_jetbrains_research_boolector_Native_dumpSmt2(
     return model;
 }
 
-JNIEXPORT jstring JNICALL Java_org_jetbrains_research_boolector_Native_dumpSmt2_node(JNIEnv *env, jobject jobj, jlong btorRef, jlong nodeRef) {
+JNIEXPORT jstring JNICALL Java_org_jetbrains_research_boolector_Native_dumpSmt2Node(JNIEnv *env, jobject jobj, jlong btorRef, jlong nodeRef) {
     Btor* btor = (Btor*) btorRef;
     BoolectorNode* node = (BoolectorNode*) nodeRef;
     FILE *tmp_dump = tmpfile();
