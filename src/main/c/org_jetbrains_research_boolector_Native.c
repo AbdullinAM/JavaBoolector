@@ -367,7 +367,7 @@ JNIEXPORT jboolean JNICALL
 Java_org_jetbrains_research_boolector_Native_isFuncSort(JNIEnv *env, jobject jobj, jlong btorRef, jlong jsort_ref) {
     Btor* btor = (Btor*) btorRef;
     BoolectorSort s = (BoolectorSort) jsort_ref;
-    return (jboolean) boolector_is_fun_bitvec_sort(btor, s);
+    return (jboolean) boolector_is_fun_sort(btor, s);
 }
 
 JNIEXPORT void JNICALL

@@ -73,6 +73,14 @@ JNIEXPORT jboolean JNICALL Java_org_jetbrains_research_boolector_Native_isArrayS
 
 /*
  * Class:     org_jetbrains_research_boolector_Native
+ * Method:    isFuncSort
+ * Signature: (JJ)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_jetbrains_research_boolector_Native_isFuncSort
+  (JNIEnv *, jclass, jlong, jlong);
+
+/*
+ * Class:     org_jetbrains_research_boolector_Native
  * Method:    getWidth
  * Signature: (JJ)I
  */
