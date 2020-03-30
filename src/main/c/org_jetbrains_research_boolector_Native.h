@@ -513,6 +513,14 @@ JNIEXPORT jstring JNICALL Java_org_jetbrains_research_boolector_Native_dumpSmt2
 
 /*
  * Class:     org_jetbrains_research_boolector_Native
+ * Method:    dumpSmt2Node
+ * Signature: (JJ)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_org_jetbrains_research_boolector_Native_dumpSmt2Node
+  (JNIEnv *, jclass, jlong, jlong);
+
+/*
+ * Class:     org_jetbrains_research_boolector_Native
  * Method:    printModel
  * Signature: (J)Ljava/lang/String;
  */

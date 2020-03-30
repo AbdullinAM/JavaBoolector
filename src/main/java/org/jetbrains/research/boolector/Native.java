@@ -128,6 +128,8 @@ public final class Native {
 
     static native String dumpSmt2(long btor);
 
+    static native String dumpSmt2Node(long btor, long ref);
+
     static native String printModel(long btor);
 
     static native void assume(long btor, long ref);

@@ -69,6 +69,16 @@ JNIEXPORT jstring JNICALL Java_org_jetbrains_research_boolector_Native_dumpSmt2(
     return model;
 }
 
+JNIEXPORT jstring JNICALL Java_org_jetbrains_research_boolector_Native_dumpSmt2_node(JNIEnv *env, jobject jobj, jlong btorRef, jlong nodeRef) {
+    Btor* btor = (Btor*) btorRef;
+    BoolectorNode* node = (BoolectorNode*) nodeRef;
+    FILE *tmp_dump = tmpfile();
+    boolector_dump_smt2_node(btor, tmp_dump, node);
+    jstring model = readFileContent(env, tmp_dump);
+    fclose(tmp_dump);
+    return model;
+}
+
 JNIEXPORT void JNICALL Java_org_jetbrains_research_boolector_Native_btorRelease(JNIEnv *env, jobject jobj, jlong btorRef) {
     Btor* btor = (Btor*) btorRef;
     boolector_release_all(btor);

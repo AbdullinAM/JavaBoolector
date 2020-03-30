@@ -63,6 +63,10 @@ public abstract class BoolectorNode extends BoolectorObject {
         return name;
     }
 
+    public String dumpSmt2() {
+        return Native.dumpSmt2Node(btor.getRef(), ref);
+    }
+
     private int getWidthSort() {
         return Native.getWidthNode(btor.getRef(), ref);
     }
