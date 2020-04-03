@@ -32,7 +32,7 @@ clean:
 	rm -rfi $(OBJECTS_DIR) $(EXECUTABLE)
 
 .PHONY: install
-install: $(EXECUTABLE)
+install:
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/include/boolector-java
 	cp $(EXECUTABLE) $(DESTDIR)$(PREFIX)/lib/$(EXECUTABLE_NAME)
